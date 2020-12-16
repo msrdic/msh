@@ -1,6 +1,7 @@
 module Main (main) where
 
 import System.Environment ( getArgs )
+import System.Process (system)
 
 import Commands
 
@@ -19,7 +20,7 @@ main = do
 handleCommand :: Command -> IO ()
 handleCommand (StackDeps List) = error "not implemented"
 handleCommand (StackDeps Check) = error "not implemented"
-handleCommand (HSDeps Preview) = error "not implemented"
+handleCommand (HSDeps Preview) = system "hsdeps . | dot -Tpng | open -a Preview.app -f" >> return ()
 handleCommand (HSDeps Dot) = error "not implemented"
 
 usage :: IO ()
