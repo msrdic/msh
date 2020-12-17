@@ -35,3 +35,8 @@ usage :: IO ()
 usage = do
   putStrLn "msh <command> <args>"
   putStrLn ""
+  putStrLn "  msh hsdeps <command> <args>"
+  putStrLn ""
+  putStrLn "    msh hsdeps dot       : run hsdeps in the current directory"
+  putStrLn "    msh hsdeps png <name>: run hsdeps in the current directory and save as PNG image"
+  putStrLn "    msh hsdeps preview   : run hsdeps in the current directory and open in Preview.app (macOS only)"
