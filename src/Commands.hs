@@ -11,5 +11,7 @@ data StackDepsSub = List -- list all stack dependencies
                   deriving (Eq, Show)
 
 data HSDepsSub = Preview -- preview, macos only
-               | Dot -- export as dot
+               | PNG String -- export as PNG
+               | Dot -- print dot format
+               | Generic -- print dot format
                deriving (Eq, Show)
