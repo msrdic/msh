@@ -1,0 +1,31 @@
+name: build
+on:
+    pull_request:
+    push:
+      branches:
+        - main
+
+jobs:
+    build:
+      name: CI build
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Setup GHC
+          uses: actions/setup-haskell@v1
+          with:
+            ghc-version: "8.8.3"
+            enable-stack: true
+
+        - name: Clone project
+          uses: actions/checkout@v2
+
+        - name: Cache dependencies
+          uses: actions/cache@v2
+          with:
+            path: ~/.stack
+            key: ${{ runner.os }}-${{ hashFiles('stack.yaml') }}
+            restore-keys: |
+              ${{ runner.os }}-
+        - name: Build and run tests
+          run: "stack test --fast --no-terminal --system-ghc"
